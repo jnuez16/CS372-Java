@@ -4,20 +4,20 @@
  * and open the template in the editor.
  */
 
-//: c02:JavaDoc.java
+
 package javadoc;
 import java.util.*;
-/** The first Thinking in Java example program.
- *Displays a string and today's date.
+/** 
+ *
  * @author jnuez16
+ * <p> An exploration of how JavaDoc works </p>
  * 
  */
 public class JavaDoc {
 
-    /** Sole entry point to class & application
+    /**
      * @param args the command line arguments
-     * @return No return value
-     * #exception exceptions No exceptions thrown
+     * <p>Prints the date according to the computer. </p>
      */
     public static void main(String[] args) {
         // TODO code application logic here
@@ -25,4 +25,4 @@ public class JavaDoc {
         System.out.println(new Date());
     }
     
-} ///:~
+}
