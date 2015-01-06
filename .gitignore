@@ -26,7 +26,8 @@ $RECYCLE.BIN/
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -41,3 +42,15 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+/HW1/DataOnly/nbproject/private/
+/HW1/DataOnly/build/
+/HW1/IteratingTheArgument/nbproject/private/
+/HW1/IteratingTheArgument/build/
+/HW1/JavaDoc/nbproject/private/
+/HW1/JavaDoc/build/
+/HW1/AreaOfACircle/nbproject/private/
+/HW1/AreaOfACircle/build/
+/HW1/RandomNumbers/nbproject/private/
+/HW1/RandomNumbers/build/
+/HW1/PrimeNumbers/nbproject/private/
+/HW1/PrimeNumbers/build/
