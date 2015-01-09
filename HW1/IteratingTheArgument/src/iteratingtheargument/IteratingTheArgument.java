@@ -22,6 +22,7 @@ public class IteratingTheArgument {
         
         /**
          * <p>Checks if there's any data from the args variable and outputs it.</p>
+         * PT: better to check that args.length > 3
          */
         if(args.length > 0)
         {
