@@ -12,7 +12,7 @@ import java.util.Scanner;
  * @author jnuez16
  */
 public class AreaOfACircle {
-    final static float PI = 3.14f;
+    final static float PI = 3.14f;  //PT: use java.lang.Math.PI
     /**
      * @param args the command line arguments
      * <p>Prompts for radius</p>
