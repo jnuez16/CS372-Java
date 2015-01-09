@@ -31,23 +31,5 @@ public class Gerbil_ArrayList {
     {
         System.out.printf("Gerbil %d is hopping mad!\n", gerbilNumber);
     }
-    /**
-     * @param args the command line arguments
-     * <p>Creates a gerbil object and initializes it. </p>
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        ArrayList<Gerbil_ArrayList> gerbil = new ArrayList<Gerbil_ArrayList>();
-        
-        for(int i = 0; i < 25; i++)
-        {
-            gerbil.add(new Gerbil_ArrayList(i+1));
-        }
-        for(int i = 0; i < 25; i++)
-        {
-            gerbil.get(i).hop();
-        }
-        
-    }
     
 }
