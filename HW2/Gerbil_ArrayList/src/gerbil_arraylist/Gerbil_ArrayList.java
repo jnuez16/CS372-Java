@@ -31,5 +31,4 @@ public class Gerbil_ArrayList {
     {
         System.out.printf("Gerbil %d is hopping mad!\n", gerbilNumber);
     }
-    
 }
