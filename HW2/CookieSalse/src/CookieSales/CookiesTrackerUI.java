@@ -14,6 +14,7 @@ public class CookiesTrackerUI extends javax.swing.JFrame {
     Cookies mint = new Cookies("Thin Mints", 3.0);
     Cookies samoas = new Cookies("Samoas", 4.0);
     Cookies cc = new Cookies("Chocoloate Chip", 5.0);
+    int x,y,z;
     /**
      * Creates new form CookiesTrackerUI
      */
@@ -183,9 +184,24 @@ public class CookiesTrackerUI extends javax.swing.JFrame {
 
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
         // TODO add your handling code here:
-        mint.addItem(Integer.parseInt(MintText.getText()));
-        samoas.addItem(Integer.parseInt(SamoasText.getText()));
-        cc.addItem(Integer.parseInt(CCText.getText()));
+        if(MintText.getText().equals(""))
+            x = 0;
+        else
+            x = Integer.parseInt(MintText.getText());
+        mint.addItem(x);
+        
+        if(SamoasText.getText().equals(""))
+            y = 0;
+        else
+            y = Integer.parseInt(SamoasText.getText());
+        
+        samoas.addItem(y);
+        
+        if(CCText.getText().equals(""))
+            z = 0;
+        else
+            z = Integer.parseInt(CCText.getText());
+        cc.addItem(z);
         
         MintNum.setText(String.format("%d", mint.numItems()));
         SamoasNum.setText(String.format("%d", samoas.numItems()));

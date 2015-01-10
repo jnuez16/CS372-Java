@@ -14,21 +14,41 @@ import java.util.*;
 public class CalculatingPi {
 
     
-    public double pi = 0;
-    List<Double> Pi = new ArrayList<Double>();
+    public double pi;
+    List<Double> Pi;
+    
     
     /**
-     * <p>Constructor calculating the values of pi and storing each term in an array</p>
+     * <p> Simple Constructor </p>
+     */
+    public CalculatingPi()
+    {
+        Pi = new ArrayList<Double>();
+        pi = 0;
+        
+        
+    }
+    
+    /**
+     * <p>Evaluates the series for finding pi with the indicated number of terms</p>
      * @param numTerms 
      */
-    public CalculatingPi(int numTerms)
+    public void evaluate(int numTerms)
     {
-        
         for(int i = 0; i < numTerms; i++)
         {
             pi += (Math.pow(-1, i))*(4/(double)(2*(i)+1));
             Pi.add(pi);
         }
+    }
+    
+    /**
+     * <p> Clears existing data</p>
+     */
+    public void clear()
+    {
+        pi = 0;
+        Pi.clear();
     }
     
     /**

@@ -12,6 +12,7 @@ import java.util.*;
  */
 public class HWTrackerGUI extends javax.swing.JFrame {
     Stats s = new Stats();
+    double x;
     /**
      * Creates new form HWTrackerGUI
      */
@@ -102,7 +103,12 @@ public class HWTrackerGUI extends javax.swing.JFrame {
 
     private void AddtoListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddtoListActionPerformed
         // TODO add your handling code here:
-        s.addScore(Double.parseDouble(Score.getText()));
+        if(Score.getText().equals(""))
+            x = 0;
+        else
+            x = Double.parseDouble(Score.getText());
+        
+        s.addScore(x);
         Maximum.setText("Maximum: " + String.format("%.2f", s.maximum()));
         Minimum.setText("Minimum: " + String.format("%.2f", s.minimum()));
         Average.setText("Average: " + String.format("%.2f", s.average()));

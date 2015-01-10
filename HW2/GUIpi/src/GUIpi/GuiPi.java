@@ -14,6 +14,8 @@ import java.util.*;
  * @author jnuez16
  */
 public class GuiPi extends javax.swing.JFrame {
+    int x = 0;
+    CalculatingPi pi = new CalculatingPi();
 
     /**
      * Creates new form GuiPi
@@ -88,10 +90,15 @@ public class GuiPi extends javax.swing.JFrame {
 
     private void EvaluateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EvaluateActionPerformed
         // TODO add your handling code here:
-        CalculatingPi pi = new CalculatingPi(Integer.parseInt(numTerms.getText()));
+        
+        if(numTerms.getText().equals(""))
+            x = 0;
+        else
+            x = Integer.parseInt(numTerms.getText());
+        pi.evaluate(x);
         PiValue.setText(String.format("%.12f", pi.getPi()));
         
-        
+        pi.clear();
     }//GEN-LAST:event_EvaluateActionPerformed
 
     /**
