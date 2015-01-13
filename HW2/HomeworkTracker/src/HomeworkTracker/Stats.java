@@ -13,13 +13,13 @@ import java.util.*;
  */
 public class Stats {
 
-    List<Double> stats = new ArrayList<Double>();
+    List<Integer> stats = new ArrayList<Integer>();
 
     /**
      * <p> Adds a new score to the list of scores </p>
      * @param d Score
      */
-    public void addScore(Double d) {
+    public void addScore(Integer d) {
         stats.add(d);
     }
 
@@ -27,8 +27,8 @@ public class Stats {
      * <p> Searches for the minimum score from the list </p>
      * @return Returns the minimum score as a double
      */
-    public Double minimum() {
-        double min = 0;
+    public Integer minimum() {
+        int min = 0;
         if (stats.size() > 0) {
             min = stats.get(0);
             for (int i = 0; i < stats.size(); i++) {
@@ -44,8 +44,8 @@ public class Stats {
      * <p> Searches for the maximum score from the list </p>
      * @return Returns the minimum score as a double
      */
-    public Double maximum() {
-        double max = 0;
+    public Integer maximum() {
+        int max = 0;
         if(stats.size() > 0)
         {
             max = stats.get(0);
@@ -71,7 +71,7 @@ public class Stats {
         {
             for(int i = 0; i < stats.size(); i++)
             {
-                average += stats.get(i);
+                average += (double)stats.get(i);
             }
         }
         return average/stats.size();
@@ -81,9 +81,9 @@ public class Stats {
      * <p> Finds the sum of the scores </p>
      * @return Returns the sum as a double
      */
-    public Double total()
+    public Integer total()
     {
-        double sum = 0;
+        int sum = 0;
         if(stats.size() > 0)
         {
             for(int i = 0; i < stats.size(); i++)

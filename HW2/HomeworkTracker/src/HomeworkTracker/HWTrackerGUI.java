@@ -12,7 +12,7 @@ import java.util.*;
  */
 public class HWTrackerGUI extends javax.swing.JFrame {
     Stats s = new Stats();
-    double x;
+    int x;
     /**
      * Creates new form HWTrackerGUI
      */
@@ -106,11 +106,11 @@ public class HWTrackerGUI extends javax.swing.JFrame {
         if(Score.getText().equals(""))
             x = 0;
         else
-            x = Double.parseDouble(Score.getText());
+            x = Integer.parseInt(Score.getText());
         
         s.addScore(x);
-        Maximum.setText("Maximum: " + String.format("%.2f", s.maximum()));
-        Minimum.setText("Minimum: " + String.format("%.2f", s.minimum()));
+        Maximum.setText("Maximum: " + String.format("%d", s.maximum()));
+        Minimum.setText("Minimum: " + String.format("%d", s.minimum()));
         Average.setText("Average: " + String.format("%.2f", s.average()));
         Score.setText("");
         
