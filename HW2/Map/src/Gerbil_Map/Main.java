@@ -26,6 +26,8 @@ public class Main {
         
         for(int i = 0; i < name.length; i++)
         {
+            //PT -- you don't need to track names. HashMap gives you a keySet, so
+            //      you could iterate through that instead.
             names.add(name[i]);
             ger.put(name[i],new Gerbil_ArrayList(i));
         }

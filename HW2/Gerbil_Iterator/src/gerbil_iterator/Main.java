@@ -8,7 +8,7 @@ package gerbil_iterator;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import gerbil_arraylist.*;
+import gerbil_arraylist.*;  //PT -- good!
 
 /**
  *
