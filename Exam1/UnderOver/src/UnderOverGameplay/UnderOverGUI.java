@@ -55,6 +55,7 @@ public class UnderOverGUI extends javax.swing.JFrame {
         Die2 = new javax.swing.JLabel();
         Roll = new javax.swing.JButton();
         Bet2 = new javax.swing.JLabel();
+        Choice = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,6 +119,8 @@ public class UnderOverGUI extends javax.swing.JFrame {
 
         Bet2.setText("Bet:");
 
+        Choice.setText("Choice:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -146,7 +149,11 @@ public class UnderOverGUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(39, 39, 39)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Bet)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(Bet)
+                                        .addGap(84, 84, 84)
+                                        .addComponent(Choice)
+                                        .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(betMoney, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -200,7 +207,9 @@ public class UnderOverGUI extends javax.swing.JFrame {
                                     .addComponent(Die2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Seven))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Roll))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Roll)
+                                    .addComponent(Choice)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(Money)
@@ -256,25 +265,29 @@ public class UnderOverGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         choice = 0;
         userint = 5;
+        Choice.setText(Under7.getText());
     }//GEN-LAST:event_Under7ActionPerformed
 
     private void Over7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Over7ActionPerformed
         // TODO add your handling code here:
         choice = 0;
         userint = 10;
+        Choice.setText(Over7.getText());
     }//GEN-LAST:event_Over7ActionPerformed
 
     private void SevenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SevenActionPerformed
         // TODO add your handling code here:
         choice = 1;
         userint = 7;
+        Choice.setText(Seven.getText());
     }//GEN-LAST:event_SevenActionPerformed
 
     private void RollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RollActionPerformed
         // TODO add your handling code here:
-        Die1.setText(String.format("%d",un.roll()[0]));
-        Die2.setText(String.format("%d", un.roll()[1]));
-        int total = un.roll()[0]+un.roll()[1];
+        int[] rolling = un.roll();
+        Die1.setText(String.format("%d",rolling[0]));
+        Die2.setText(String.format("%d", rolling[1]));
+        int total = rolling[0]+rolling[1];
         
         if((total < 7 && userint < 7) || (total > 7 && userint > 7))
         {
@@ -339,6 +352,7 @@ public class UnderOverGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Bet;
     private javax.swing.JLabel Bet2;
+    private javax.swing.JLabel Choice;
     private javax.swing.JLabel Die1;
     private javax.swing.JLabel Die2;
     private javax.swing.JButton LogIn;

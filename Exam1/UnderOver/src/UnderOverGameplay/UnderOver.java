@@ -15,7 +15,10 @@ public class UnderOver {
     private int[] dice = new int[2];
     private int bet = 0;
     Random r = new Random(100);
-    
+    /**
+     * Rolls the dice
+     * @return an array of int holding the dice value
+     */
     public int[] roll()
     {
         for(int i = 0; i < dice.length; i++)
@@ -25,6 +28,13 @@ public class UnderOver {
         return dice;
     }
     
+    /**
+     * outputs the money earned
+     * @param bet
+     * @param choice
+     * @param money
+     * @return 
+     */
     public int Win(int bet,int choice,int money)
     {
         int result;
@@ -38,7 +48,13 @@ public class UnderOver {
         }
         return result;
     }
-    
+    /**
+     * outputs the money lost
+     * @param bet amount they bet
+     * @param choice 
+     * @param money current money they have
+     * @return the money lost
+     */
     public int Lose(int bet, int choice, int money)
     {
         int result;
@@ -52,11 +68,18 @@ public class UnderOver {
         }
         return result;
     }
-    
+    /**
+     * mutator function for bet
+     * @param i the bet
+     */
     public void setBet(int i)
     {
         bet = i;
     }
+    /**
+     * accessor function for bet
+     * @return the bet value
+     */
     public int getBet()
     {
         return bet;

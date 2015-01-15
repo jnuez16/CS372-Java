@@ -26,6 +26,10 @@ public class User {
     private Vector<Integer> money = new Vector<Integer>();
     File f = new File("Z:\\CS372-Java\\Exam1\\UnderOver\\User.txt");
 
+    /**
+     * Constructor that reads in the file and stores info
+     * @throws IOException 
+     */
     public User() throws IOException {
         try (BufferedReader rdr = new BufferedReader(new FileReader(f))) {
             String line;
@@ -48,6 +52,12 @@ public class User {
         }
     }
 
+    /**
+     * Updates the file if there's a new user
+     * @param username 
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     public void update(String username) throws FileNotFoundException, IOException {
         int m = 500;
         this.username.add(username);
@@ -69,15 +79,26 @@ public class User {
         }
     }
 
+    /**
+     * updates the money of the user
+     * @param i
+     * @param m 
+     */
     public void changeMoney(int i, int m) {
         money.set(i, m);
     }
-    
+    /**
+     * accessor function for username
+     * @return A list of strings holding the username
+     */
     public List<String> getUsername()
     {
         return username;
     }
-    
+    /**
+     * accessor function for money
+     * @return A vector of integers holding the money
+     */
     public Vector<Integer> getMoney()
     {
         return money;
