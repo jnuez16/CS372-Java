@@ -1,0 +1,4 @@
+username: john;
+money: 500;
+username: joshua;
+money: 500;
