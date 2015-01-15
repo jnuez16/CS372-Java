@@ -1,4 +1,10 @@
-username: john;
+username: john; 
 money: 500;
-username: joshua;
+username: joshua; 
+money: 15;
+username: jason; 
+money: 500;
+username: james; 
+money: 500;
+username: nico; 
 money: 500;

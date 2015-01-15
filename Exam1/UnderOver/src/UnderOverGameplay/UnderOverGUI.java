@@ -223,6 +223,8 @@ public class UnderOverGUI extends javax.swing.JFrame {
 
     private void LogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogInActionPerformed
         // TODO add your handling code here:
+        //
+        //checks if the file is empty by checking the array of usernames
         if (!user.getUsername().isEmpty()) {
             for (int i = 0; i < user.getUsername().size(); i++) {
                 if (user.getUsername().get(i).equals(userName.getText())) {
@@ -232,21 +234,21 @@ public class UnderOverGUI extends javax.swing.JFrame {
                     found = true;
                 }
             }
-            if (!found) {
+            if (!found) { //if not found, create a new user
                 try {
                     user.update(userName.getText());
-                    User.setText(String.format("User: %s", user.getUsername().get(user.getUsername().size())));
-                    Money.setText(String.format("Money: %d", user.getMoney().get(user.getMoney().size())));
+                    User.setText(String.format("User: %s", user.getUsername().get(user.getUsername().size() - 1)));
+                    Money.setText(String.format("Money: %d", user.getMoney().get(user.getMoney().size() - 1)));
 
                 } catch (IOException ex) {
                     Logger.getLogger(UnderOverGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        } else {
+        } else { //if file is empty create a new user
             try {
                 user.update(userName.getText());
-                User.setText(String.format("User: %s", user.getUsername().get(user.getUsername().size()-1)));
-                Money.setText(String.format("Money: %d", user.getMoney().get(user.getMoney().size()-1)));
+                User.setText(String.format("User: %s", user.getUsername().get(user.getUsername().size() - 1)));
+                Money.setText(String.format("Money: %d", user.getMoney().get(user.getMoney().size() - 1)));
 
             } catch (IOException ex) {
                 Logger.getLogger(UnderOverGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -257,56 +259,63 @@ public class UnderOverGUI extends javax.swing.JFrame {
 
     private void BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BetActionPerformed
         // TODO add your handling code here:
+
+        //Places the bets
         Bet2.setText(String.format("Bet: %s", betMoney.getText()));
-        un.setBet(Integer.parseInt(betMoney.getText()));
+        if (betMoney.getText().equals("test")) {
+            throw new IllegalArgumentException("Cannot Input a string!");
+        } else {
+            un.setBet(Integer.parseInt(betMoney.getText()));
+        }
+
+
     }//GEN-LAST:event_BetActionPerformed
 
     private void Under7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Under7ActionPerformed
         // TODO add your handling code here:
         choice = 0;
         userint = 5;
-        Choice.setText(Under7.getText());
+        Choice.setText(Under7.getText()); //changes the GUI
     }//GEN-LAST:event_Under7ActionPerformed
 
     private void Over7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Over7ActionPerformed
         // TODO add your handling code here:
         choice = 0;
         userint = 10;
-        Choice.setText(Over7.getText());
+        Choice.setText(Over7.getText()); //changes the UI
     }//GEN-LAST:event_Over7ActionPerformed
 
     private void SevenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SevenActionPerformed
         // TODO add your handling code here:
         choice = 1;
         userint = 7;
-        Choice.setText(Seven.getText());
+        Choice.setText(Seven.getText()); //changes the UI
     }//GEN-LAST:event_SevenActionPerformed
 
     private void RollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RollActionPerformed
         // TODO add your handling code here:
         int[] rolling = un.roll();
-        Die1.setText(String.format("%d",rolling[0]));
+        Die1.setText(String.format("%d", rolling[0]));
         Die2.setText(String.format("%d", rolling[1]));
-        int total = rolling[0]+rolling[1];
-        
-        if((total < 7 && userint < 7) || (total > 7 && userint > 7))
-        {
+        int total = rolling[0] + rolling[1];
+
+        //checks the rolls agains the user's choice
+        if ((total < 7 && userint < 7) || (total > 7 && userint > 7)) {
             user.changeMoney(index, un.Win(un.getBet(), choice, user.getMoney().get(index)));
-        }
-        else if((total == 7 && userint == 7))
-        {
+        } else if ((total == 7 && userint == 7)) {
             user.changeMoney(index, un.Win(un.getBet(), choice, user.getMoney().get(index)));
-        }
-        else if((total < 7 && userint >= 7) || (total > 7 && userint <= 7))
-        {
+        } else if ((total < 7 && userint >= 7) || (total > 7 && userint <= 7)) {
+            user.changeMoney(index, un.Lose(un.getBet(), choice, user.getMoney().get(index)));
+        } else if ((total == 7 && (userint < 7 || userint > 7))) {
             user.changeMoney(index, un.Lose(un.getBet(), choice, user.getMoney().get(index)));
         }
-        else if((total == 7 && (userint < 7 || userint > 7)))
-        {
-            user.changeMoney(index, un.Lose(un.getBet(), choice, user.getMoney().get(index)));
-        }
-        
+
         Money.setText(String.format("Money: %d", user.getMoney().get(index)));
+        try {
+            user.fileUpdate(); //updates the file
+        } catch (IOException ex) {
+            Logger.getLogger(UnderOverGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_RollActionPerformed
 
@@ -344,6 +353,8 @@ public class UnderOverGUI extends javax.swing.JFrame {
                     new UnderOverGUI().setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(UnderOverGUI.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IllegalArgumentException ex) {
+                    System.out.printf("Error: %s\n", ex.getMessage());
                 }
             }
         });
