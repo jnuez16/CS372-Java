@@ -5,7 +5,10 @@
  */
 package EventCalendar;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,11 +32,11 @@ public class EventCalendarGUI extends javax.swing.JFrame {
         cl = new CalendarInformation();
         DefaultListModel listModel = new DefaultListModel();
         initComponents();
-        if (!cl.getTitle().isEmpty()) {
-            for (int i = 0; i < cl.getTitle().size(); i++) {
-                TitleList.setListData((Vector) cl.getTitle());
-                LocationList.setListData((Vector) cl.getLoc());
-                DateList.setListData((Vector) cl.getDate());
+        if (!cl.getEvent().isEmpty()) {
+            for (int i = 0; i < cl.getEvent().size(); i++) {
+                TitleList.setModel(cl.getTitleList());
+                LocationList.setModel(cl.getLocList());
+                DateList.setModel(cl.getDateList());
             }
         }
     }
@@ -266,14 +269,16 @@ public class EventCalendarGUI extends javax.swing.JFrame {
                     + Year.getSelectedItem().toString();
             // TODO add your handling code here:
             cl.addInfo(TitleField.getText(), LocField.getText(), date2);
-            if (!cl.getTitle().isEmpty()) {
-                for (int i = 0; i < cl.getTitle().size(); i++) {
-                    TitleList.setListData((Vector) cl.getTitle());
-                    LocationList.setListData((Vector) cl.getLoc());
-                    DateList.setListData((Vector) cl.getDate());
+            if (!cl.getEvent().isEmpty()) {
+                for (int i = 0; i < cl.getEvent().size(); i++) {
+                    TitleList.setModel(cl.getTitleList());
+                    LocationList.setModel(cl.getLocList());
+                    DateList.setModel(cl.getDateList());
                 }
             }
             cl.update();
+            TitleField.setText("");
+            LocField.setText("");
         } catch (IOException ex) {
             Logger.getLogger(EventCalendarGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -340,14 +345,31 @@ public class EventCalendarGUI extends javax.swing.JFrame {
 
     private void SortTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SortTitleActionPerformed
         try {
-            // TODO add your handling code here:
-            cl.sortTitle();
+            //        try {
+//            // TODO add your handling code here:
+//            cl.sortTitle();
+//            cl.update();
+//            if (!cl.getTitle().isEmpty()) {
+//                for (int i = 0; i < cl.getTitle().size(); i++) {
+//                    TitleList.setListData((Vector) cl.getTitle());
+//                    LocationList.setListData((Vector) cl.getLoc());
+//                    DateList.setListData((Vector) cl.getDate());
+//                }
+//            }
+//        } catch (IOException ex) {
+//            Logger.getLogger(EventCalendarGUI.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+            Collections.sort(cl.getEvent(), new EventCompararor() {
+                public int compare(Event x, Event y) {
+                    return x.getTitle().compareToIgnoreCase(y.getTitle());
+                }
+            });
             cl.update();
-            if (!cl.getTitle().isEmpty()) {
-                for (int i = 0; i < cl.getTitle().size(); i++) {
-                    TitleList.setListData((Vector) cl.getTitle());
-                    LocationList.setListData((Vector) cl.getLoc());
-                    DateList.setListData((Vector) cl.getDate());
+            if (!cl.getEvent().isEmpty()) {
+                for (int i = 0; i < cl.getEvent().size(); i++) {
+                    TitleList.setModel(cl.getTitleList());
+                    LocationList.setModel(cl.getLocList());
+                    DateList.setModel(cl.getDateList());
                 }
             }
         } catch (IOException ex) {
@@ -356,16 +378,33 @@ public class EventCalendarGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_SortTitleActionPerformed
 
     private void SortLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SortLocActionPerformed
-        // TODO add your handling code here:
-                try {
+        try {
             // TODO add your handling code here:
-            cl.sortLoc();
+//        try {
+//            // TODO add your handling code here:
+//            cl.sortLoc();
+//            cl.update();
+//            if (!cl.getTitle().isEmpty()) {
+//                for (int i = 0; i < cl.getTitle().size(); i++) {
+//                    TitleList.setListData((Vector) cl.getTitle());
+//                    LocationList.setListData((Vector) cl.getLoc());
+//                    DateList.setListData((Vector) cl.getDate());
+//                }
+//            }
+//        } catch (IOException ex) {
+//            Logger.getLogger(EventCalendarGUI.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+            Collections.sort(cl.getEvent(), new EventCompararor() {
+                public int compare(Event x, Event y) {
+                    return x.getLoc().compareToIgnoreCase(y.getLoc());
+                }
+            });
             cl.update();
-            if (!cl.getTitle().isEmpty()) {
-                for (int i = 0; i < cl.getTitle().size(); i++) {
-                    TitleList.setListData((Vector) cl.getTitle());
-                    LocationList.setListData((Vector) cl.getLoc());
-                    DateList.setListData((Vector) cl.getDate());
+            if (!cl.getEvent().isEmpty()) {
+                for (int i = 0; i < cl.getEvent().size(); i++) {
+                    TitleList.setModel(cl.getTitleList());
+                    LocationList.setModel(cl.getLocList());
+                    DateList.setModel(cl.getDateList());
                 }
             }
         } catch (IOException ex) {
