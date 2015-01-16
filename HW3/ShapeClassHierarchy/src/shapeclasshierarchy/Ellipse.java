@@ -5,7 +5,6 @@
  */
 package shapeclasshierarchy;
 
-import java.util.InputMismatchException;
 import java.lang.Math;
 
 /**
@@ -18,8 +17,14 @@ public class Ellipse extends Shape {
     private int r2;
 
     public Ellipse(int r1, int r2) {
-        this.r1 = r1;
-        this.r2 = r2;
+        if (r1 < 0 || r2 < 0) {
+            throw new IllegalArgumentException("Cannot initiate with negative radius.");
+        }
+        else
+        {
+            this.r1 = r1;
+            this.r2 = r2;
+        }
     }
 
     @Override

@@ -24,12 +24,12 @@ public class Main {
         try {
             rec = new Rectangle(6, 10);
             elip = new Ellipse(13, 2);
-            tri = new Triangle(12, 12, 12);
+            tri = new Triangle(3, 4, 12);
 
         } catch (InputMismatchException ex) {
             System.out.println("Invalid Input: Enter an Integer!");
         } catch (IllegalArgumentException ex) {
-            System.out.println("Invalid Input: The sides do not make a triangle!");
+            System.out.printf("Error: %s\n", ex.getMessage());
         }
         if (rec != null) {
             System.out.printf("Rectangle \n\tArea: %.2f\n\tPerimeter: %.2f\n", rec.getArea(), rec.getPerimeter());

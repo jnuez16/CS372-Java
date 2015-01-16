@@ -5,8 +5,6 @@
  */
 package shapeclasshierarchy;
 
-import java.util.InputMismatchException;
-
 /**
  *
  * @author jnuez16
@@ -17,8 +15,12 @@ public class Rectangle extends Shape {
     private int height;
 
     public Rectangle(int width, int height) {
-        this.width = width;
-        this.height = height;
+        if (width < 0 || height < 0) {
+            throw new IllegalArgumentException("Cannot initialize with negative width and height.");
+        } else {
+            this.width = width;
+            this.height = height;
+        }
 
     }
 
