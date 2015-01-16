@@ -10,7 +10,6 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
-import javax.swing.table.*;
 
 /**
  *
@@ -20,7 +19,6 @@ public class EventCalendarGUI extends javax.swing.JFrame {
 
     CalendarInformation cl = null;
     String date2;
-    DefaultTableModel model = null;
 
     /**
      * Creates new form EventCalendarGUI
@@ -29,17 +27,13 @@ public class EventCalendarGUI extends javax.swing.JFrame {
      */
     public EventCalendarGUI() throws IOException {
         cl = new CalendarInformation();
-        //DefaultListModel listModel = new DefaultListModel();
+        DefaultListModel listModel = new DefaultListModel();
         initComponents();
-        model = (DefaultTableModel) EventTable.getModel();
         if (!cl.getEvent().isEmpty()) {
             for (int i = 0; i < cl.getEvent().size(); i++) {
-//                TitleList.setModel(cl.getTitleList());
-//                LocationList.setModel(cl.getLocList());
-//                DateList.setModel(cl.getDateList());
-
-                Object[] row = {cl.getEvent().get(i).getTitle(), cl.getEvent().get(i).getLoc(), cl.getEvent().get(i).getDate()};
-                model.addRow(row);
+                TitleList.setModel(cl.getTitleList());
+                LocationList.setModel(cl.getLocList());
+                DateList.setModel(cl.getDateList());
             }
         }
     }
@@ -53,6 +47,15 @@ public class EventCalendarGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        LocationList = new javax.swing.JList();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TitleList = new javax.swing.JList();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        DateList = new javax.swing.JList();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -66,10 +69,22 @@ public class EventCalendarGUI extends javax.swing.JFrame {
         Month = new javax.swing.JComboBox();
         Day = new javax.swing.JComboBox();
         Year = new javax.swing.JComboBox();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        EventTable = new javax.swing.JTable();
+        SortTitle = new javax.swing.JButton();
+        SortLoc = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jScrollPane1.setViewportView(LocationList);
+
+        jScrollPane2.setViewportView(TitleList);
+
+        jScrollPane3.setViewportView(DateList);
+
+        jLabel1.setText("Title:");
+
+        jLabel2.setText("Location:");
+
+        jLabel3.setText("Date:");
 
         jLabel4.setText("Title:");
 
@@ -113,77 +128,107 @@ public class EventCalendarGUI extends javax.swing.JFrame {
             }
         });
 
-        EventTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Title", "Location", "Date"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        SortTitle.setText("Sort By Title");
+        SortTitle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SortTitleActionPerformed(evt);
             }
         });
-        jScrollPane4.setViewportView(EventTable);
+
+        SortLoc.setText("Sort By Location");
+        SortLoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SortLocActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LocField)
-                                    .addComponent(TitleField)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel9)
-                                .addGap(44, 44, 44)
-                                .addComponent(jLabel10)
-                                .addGap(25, 25, 25))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Month, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(Day, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(Year, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel5))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(LocField)
+                                            .addComponent(TitleField)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(40, 40, 40)
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel9)
+                                        .addGap(44, 44, 44)
+                                        .addComponent(jLabel10)
+                                        .addGap(25, 25, 25))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Month, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Day, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Year, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(51, 51, 51)
-                                .addComponent(AddEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(jLabel7)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                                .addComponent(AddEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(41, 41, 41))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(SortTitle)
+                        .addGap(11, 11, 11)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(36, 36, 36))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(SortLoc)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -204,9 +249,12 @@ public class EventCalendarGUI extends javax.swing.JFrame {
                             .addComponent(Day, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(AddEvent))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                        .addComponent(AddEvent)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SortLoc)
+                    .addComponent(SortTitle))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -220,12 +268,9 @@ public class EventCalendarGUI extends javax.swing.JFrame {
             cl.addInfo(TitleField.getText(), LocField.getText(), date2);
             if (!cl.getEvent().isEmpty()) {
                 for (int i = 0; i < cl.getEvent().size(); i++) {
-//                TitleList.setModel(cl.getTitleList());
-//                LocationList.setModel(cl.getLocList());
-//                DateList.setModel(cl.getDateList());
-
-                    Object[] row = {cl.getEvent().get(i).getTitle(), cl.getEvent().get(i).getLoc(), cl.getEvent().get(i).getDate()};
-                    model.addRow(row);
+                    TitleList.setModel(cl.getTitleList());
+                    LocationList.setModel(cl.getLocList());
+                    DateList.setModel(cl.getDateList());
                 }
             }
             cl.update();
@@ -293,6 +338,41 @@ public class EventCalendarGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_YearActionPerformed
 
+    private void SortTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SortTitleActionPerformed
+//        try {
+//            // TODO add your handling code here:
+//            cl.sortTitle();
+//            cl.update();
+//            if (!cl.getTitle().isEmpty()) {
+//                for (int i = 0; i < cl.getTitle().size(); i++) {
+//                    TitleList.setListData((Vector) cl.getTitle());
+//                    LocationList.setListData((Vector) cl.getLoc());
+//                    DateList.setListData((Vector) cl.getDate());
+//                }
+//            }
+//        } catch (IOException ex) {
+//            Logger.getLogger(EventCalendarGUI.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+    }//GEN-LAST:event_SortTitleActionPerformed
+
+    private void SortLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SortLocActionPerformed
+        // TODO add your handling code here:
+//                try {
+//            // TODO add your handling code here:
+//            cl.sortLoc();
+//            cl.update();
+//            if (!cl.getTitle().isEmpty()) {
+//                for (int i = 0; i < cl.getTitle().size(); i++) {
+//                    TitleList.setListData((Vector) cl.getTitle());
+//                    LocationList.setListData((Vector) cl.getLoc());
+//                    DateList.setListData((Vector) cl.getDate());
+//                }
+//            }
+//        } catch (IOException ex) {
+//            Logger.getLogger(EventCalendarGUI.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+    }//GEN-LAST:event_SortLocActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -334,19 +414,28 @@ public class EventCalendarGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddEvent;
+    private javax.swing.JList DateList;
     private javax.swing.JComboBox Day;
-    private javax.swing.JTable EventTable;
     private javax.swing.JTextField LocField;
+    private javax.swing.JList LocationList;
     private javax.swing.JComboBox Month;
+    private javax.swing.JButton SortLoc;
+    private javax.swing.JButton SortTitle;
     private javax.swing.JTextField TitleField;
+    private javax.swing.JList TitleList;
     private javax.swing.JComboBox Year;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }

@@ -26,10 +26,8 @@ public class CalendarInformation {
     //private Vector<String> loc = new Vector<String>();
     //private Vector<String> date = new Vector<String>();
     private Vector<Event> ev = new Vector<Event>();
-    private DefaultListModel<String> model1 = new DefaultListModel<String>();
-    private DefaultListModel<String> model2 = new DefaultListModel<String>();
-    private DefaultListModel<String> model3 = new DefaultListModel<String>();
-    private File f = new File("Calendar.txt");
+    private DefaultListModel<String> model = new DefaultListModel<String>();
+    private File f = new File("C:\\Users\\jnuez16\\Documents\\CS372-Java\\HW3\\EventCalendar\\Calendar.txt");
     
     public CalendarInformation() throws FileNotFoundException, IOException
     {
@@ -100,32 +98,32 @@ public class CalendarInformation {
     
     public DefaultListModel<String> getTitleList()
     {
-        model1.removeAllElements();
+        model.removeAllElements();
         for(int i = 0; i < ev.size(); i++)
         {
-            model1.addElement(ev.get(i).getTitle());
+            model.addElement(ev.get(i).getTitle());
         }
-        return model1;
+        return model;
     }
     
     public DefaultListModel<String> getLocList()
     {
-        model2.removeAllElements();
+        model.removeAllElements();
         for(int i = 0; i < ev.size(); i++)
         {
-            model2.addElement(ev.get(i).getLoc());
+            model.addElement(ev.get(i).getLoc());
         }
-        return model2;
+        return model;
     }
     
     public DefaultListModel<String> getDateList()
     {
-        model3.removeAllElements();;
+        model.removeAllElements();;
         for(int i = 0; i< ev.size(); i++)
         {
-            model3.addElement(ev.get(i).getDate());
+            model.addElement(ev.get(i).getDate());
         }
-        return model3;
+        return model;
     }
     
     public void addInfo(String title, String loc, String Date)
