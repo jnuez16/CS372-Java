@@ -29,11 +29,11 @@ public class EventCalendarGUI extends javax.swing.JFrame {
         cl = new CalendarInformation();
         DefaultListModel listModel = new DefaultListModel();
         initComponents();
-        if (!cl.getTitle().isEmpty()) {
-            for (int i = 0; i < cl.getTitle().size(); i++) {
-                TitleList.setListData((Vector) cl.getTitle());
-                LocationList.setListData((Vector) cl.getLoc());
-                DateList.setListData((Vector) cl.getDate());
+        if (!cl.getEvent().isEmpty()) {
+            for (int i = 0; i < cl.getEvent().size(); i++) {
+                TitleList.setModel(cl.getTitleList());
+                LocationList.setModel(cl.getLocList());
+                DateList.setModel(cl.getDateList());
             }
         }
     }
@@ -266,11 +266,11 @@ public class EventCalendarGUI extends javax.swing.JFrame {
                     + Year.getSelectedItem().toString();
             // TODO add your handling code here:
             cl.addInfo(TitleField.getText(), LocField.getText(), date2);
-            if (!cl.getTitle().isEmpty()) {
-                for (int i = 0; i < cl.getTitle().size(); i++) {
-                    TitleList.setListData((Vector) cl.getTitle());
-                    LocationList.setListData((Vector) cl.getLoc());
-                    DateList.setListData((Vector) cl.getDate());
+            if (!cl.getEvent().isEmpty()) {
+                for (int i = 0; i < cl.getEvent().size(); i++) {
+                    TitleList.setModel(cl.getTitleList());
+                    LocationList.setModel(cl.getLocList());
+                    DateList.setModel(cl.getDateList());
                 }
             }
             cl.update();
@@ -339,38 +339,38 @@ public class EventCalendarGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_YearActionPerformed
 
     private void SortTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SortTitleActionPerformed
-        try {
-            // TODO add your handling code here:
-            cl.sortTitle();
-            cl.update();
-            if (!cl.getTitle().isEmpty()) {
-                for (int i = 0; i < cl.getTitle().size(); i++) {
-                    TitleList.setListData((Vector) cl.getTitle());
-                    LocationList.setListData((Vector) cl.getLoc());
-                    DateList.setListData((Vector) cl.getDate());
-                }
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(EventCalendarGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            // TODO add your handling code here:
+//            cl.sortTitle();
+//            cl.update();
+//            if (!cl.getTitle().isEmpty()) {
+//                for (int i = 0; i < cl.getTitle().size(); i++) {
+//                    TitleList.setListData((Vector) cl.getTitle());
+//                    LocationList.setListData((Vector) cl.getLoc());
+//                    DateList.setListData((Vector) cl.getDate());
+//                }
+//            }
+//        } catch (IOException ex) {
+//            Logger.getLogger(EventCalendarGUI.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_SortTitleActionPerformed
 
     private void SortLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SortLocActionPerformed
         // TODO add your handling code here:
-                try {
-            // TODO add your handling code here:
-            cl.sortLoc();
-            cl.update();
-            if (!cl.getTitle().isEmpty()) {
-                for (int i = 0; i < cl.getTitle().size(); i++) {
-                    TitleList.setListData((Vector) cl.getTitle());
-                    LocationList.setListData((Vector) cl.getLoc());
-                    DateList.setListData((Vector) cl.getDate());
-                }
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(EventCalendarGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//                try {
+//            // TODO add your handling code here:
+//            cl.sortLoc();
+//            cl.update();
+//            if (!cl.getTitle().isEmpty()) {
+//                for (int i = 0; i < cl.getTitle().size(); i++) {
+//                    TitleList.setListData((Vector) cl.getTitle());
+//                    LocationList.setListData((Vector) cl.getLoc());
+//                    DateList.setListData((Vector) cl.getDate());
+//                }
+//            }
+//        } catch (IOException ex) {
+//            Logger.getLogger(EventCalendarGUI.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_SortLocActionPerformed
 
     /**
