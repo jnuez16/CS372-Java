@@ -1,0 +1,1 @@
+<name>Name: rest</name> <addr>Address: taurant</addr> <note>Notes: this is madness</note> <rate>Rate: 5</rate>

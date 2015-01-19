@@ -5,17 +5,31 @@
  */
 package restaurantreviewer;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jnuez_000
  */
 public class ReviewerGUI extends javax.swing.JFrame {
+    
+    RestaurantIO restIO = null;
+    DefaultTableModel dtm = new DefaultTableModel();
 
     /**
      * Creates new form ReviewerGUI
      */
-    public ReviewerGUI() {
+    public ReviewerGUI() throws IOException {
+        restIO = new RestaurantIO();
         initComponents();
+        if (!restIO.getRestaurant().isEmpty()) {
+            for (int i = 0; i < restIO.getRestaurant().size(); i++) {
+                
+            }
+        }
     }
 
     /**
@@ -38,7 +52,7 @@ public class ReviewerGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         restaurantTable = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        rateCombo = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +65,11 @@ public class ReviewerGUI extends javax.swing.JFrame {
         jLabel4.setText("Notes:");
 
         addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
         restaurantTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -60,16 +79,9 @@ public class ReviewerGUI extends javax.swing.JFrame {
                 "Name", "Rate (stars)"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class
-            };
             boolean[] canEdit = new boolean [] {
                 false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -84,7 +96,7 @@ public class ReviewerGUI extends javax.swing.JFrame {
 
         jLabel5.setText("Rate:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        rateCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,7 +125,7 @@ public class ReviewerGUI extends javax.swing.JFrame {
                                             .addComponent(addressText, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(27, 27, 27)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(rateCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -138,7 +150,7 @@ public class ReviewerGUI extends javax.swing.JFrame {
                             .addComponent(addressText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rateCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
@@ -152,6 +164,16 @@ public class ReviewerGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        try {
+            // TODO add your handling code here:
+            restIO.addInfo(nameText.getText(), addressText.getText(), notesText.getText(), Integer.parseInt(rateCombo.getSelectedItem().toString()));
+            restIO.update();
+        } catch (IOException ex) {
+            Logger.getLogger(ReviewerGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_addButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,7 +205,11 @@ public class ReviewerGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ReviewerGUI().setVisible(true);
+                try {
+                    new ReviewerGUI().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(ReviewerGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -191,7 +217,6 @@ public class ReviewerGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JTextField addressText;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -200,6 +225,7 @@ public class ReviewerGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameText;
     private javax.swing.JTextField notesText;
+    private javax.swing.JComboBox rateCombo;
     private javax.swing.JTable restaurantTable;
     // End of variables declaration//GEN-END:variables
 }
