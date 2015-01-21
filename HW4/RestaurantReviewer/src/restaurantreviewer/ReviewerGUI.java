@@ -5,6 +5,8 @@
  */
 package restaurantreviewer;
 
+import java.awt.EventQueue;
+import java.awt.Point;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,9 +17,11 @@ import javax.swing.table.DefaultTableModel;
  * @author jnuez_000
  */
 public class ReviewerGUI extends javax.swing.JFrame {
-    
+
     RestaurantIO restIO = null;
-    DefaultTableModel dtm = new DefaultTableModel();
+    DefaultTableModel dtm;
+    Popup pop = new Popup();
+    Restaurant rest = null;
 
     /**
      * Creates new form ReviewerGUI
@@ -25,9 +29,11 @@ public class ReviewerGUI extends javax.swing.JFrame {
     public ReviewerGUI() throws IOException {
         restIO = new RestaurantIO();
         initComponents();
+        dtm = (DefaultTableModel) restaurantTable.getModel();
         if (!restIO.getRestaurant().isEmpty()) {
             for (int i = 0; i < restIO.getRestaurant().size(); i++) {
-                
+                Object[] row = {restIO.getRestaurant().get(i).getName(), restIO.getRestaurant().get(i).getRate()};
+                dtm.addRow(row);
             }
         }
     }
@@ -47,12 +53,13 @@ public class ReviewerGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         addressText = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        notesText = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         restaurantTable = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         rateCombo = new javax.swing.JComboBox();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        notesText = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,6 +94,12 @@ public class ReviewerGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        restaurantTable.setInheritsPopupMenu(true);
+        restaurantTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                restaurantTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(restaurantTable);
         if (restaurantTable.getColumnModel().getColumnCount() > 0) {
             restaurantTable.getColumnModel().getColumn(0).setResizable(false);
@@ -97,6 +110,13 @@ public class ReviewerGUI extends javax.swing.JFrame {
         jLabel5.setText("Rate:");
 
         rateCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+
+        notesText.setColumns(20);
+        notesText.setLineWrap(true);
+        notesText.setRows(5);
+        notesText.setWrapStyleWord(true);
+        notesText.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jScrollPane2.setViewportView(notesText);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,7 +130,6 @@ public class ReviewerGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(notesText, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
@@ -125,7 +144,8 @@ public class ReviewerGUI extends javax.swing.JFrame {
                                             .addComponent(addressText, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(27, 27, 27)
-                                        .addComponent(rateCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(rateCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -154,8 +174,9 @@ public class ReviewerGUI extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(notesText, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 21, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addButton)
@@ -166,14 +187,45 @@ public class ReviewerGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+
         try {
             // TODO add your handling code here:
+
             restIO.addInfo(nameText.getText(), addressText.getText(), notesText.getText(), Integer.parseInt(rateCombo.getSelectedItem().toString()));
             restIO.update();
+            int index = restIO.getRestaurant().size() - 1;
+            Object[] row = {restIO.getRestaurant().get(index).getName(), restIO.getRestaurant().get(index).getRate()};
+            dtm.addRow(row);
+            
+            nameText.setText("");
+            addressText.setText("");
+            notesText.setText("");
+
         } catch (IOException ex) {
             Logger.getLogger(ReviewerGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_addButtonActionPerformed
+
+    private void restaurantTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restaurantTableMouseClicked
+        // TODO add your handling code here:
+        int row = restaurantTable.rowAtPoint(new Point(evt.getX(), evt.getY()));
+        try {
+            if (evt.getClickCount() == 2) {
+                EventQueue.invokeLater(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        pop.display(restIO.getRestaurant().get(row).getName(), restIO.getRestaurant().get(row).getAddress(),
+                                restIO.getRestaurant().get(row).getNotes(), restIO.getRestaurant().get(row).getRate());
+                    }
+
+                });
+            }
+        } catch (Exception ex) {
+            System.out.println("ERROR: Table click event");
+        }
+
+    }//GEN-LAST:event_restaurantTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -223,8 +275,9 @@ public class ReviewerGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField nameText;
-    private javax.swing.JTextField notesText;
+    private javax.swing.JTextArea notesText;
     private javax.swing.JComboBox rateCombo;
     private javax.swing.JTable restaurantTable;
     // End of variables declaration//GEN-END:variables

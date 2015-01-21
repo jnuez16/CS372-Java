@@ -1,1 +1,2 @@
-<name>Name: rest</name> <addr>Address: taurant</addr> <note>Notes: this is madness</note> <rate>Rate: 5</rate>
+<name>Name: McDonalds</name> <addr>Address: Right across the street</addr> <note>Notes: This joint is really bad</note> <rate>Rate: 6</rate>
+<name>Name: Panda Express</name> <addr>Address: Right side of the street</addr> <note>Notes: It's really good. I'm coming back next time</note> <rate>Rate: 6</rate>
