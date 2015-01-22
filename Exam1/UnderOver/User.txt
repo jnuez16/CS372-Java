@@ -1,10 +1,10 @@
 username: john; 
 money: 500;
 username: joshua; 
-money: 15;
+money: -75;
 username: jason; 
 money: 500;
 username: james; 
-money: 500;
+money: 545;
 username: nico; 
 money: 500;

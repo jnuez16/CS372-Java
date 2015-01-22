@@ -24,7 +24,7 @@ public class User {
 
     private List<String> username = new ArrayList<String>();
     private Vector<Integer> money = new Vector<Integer>();
-    File f = new File("C:\\Users\\jnuez_000\\Documents\\GitHub\\CS372-Java\\Exam1\\UnderOver\\User.txt");
+    File f = new File("User.txt");
 
     /**
      * Constructor that reads in the file and stores info

@@ -261,11 +261,11 @@ public class UnderOverGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         //Places the bets
-        Bet2.setText(String.format("Bet: %s", betMoney.getText()));
-        if (betMoney.getText().equals("test")) {
-            throw new IllegalArgumentException("Cannot Input a string!");
-        } else {
+        try {
             un.setBet(Integer.parseInt(betMoney.getText()));
+            Bet2.setText(String.format("Bet: %s", betMoney.getText()));
+        } catch (Exception e) {
+            System.out.println("Error: Input an Integer!");
         }
 
 
