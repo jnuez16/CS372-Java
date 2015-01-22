@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -16,6 +17,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ImageView image = (ImageView) findViewById(R.id.coin_image);
     }
 
 
@@ -44,15 +46,15 @@ public class MainActivity extends ActionBarActivity {
     public void FlipClick(View v)
     {
         Random ran = new Random();
-        TextView f = (TextView)this.findViewById(R.id.Coin);
+        ImageView I = (ImageView)this.findViewById(R.id.coin_image);
         int r = ran.nextInt() % 2;
         if(r == 0)
         {
-            f.setText("Tails");
+            I.setImageResource(R.drawable.seahawks_coin);
         }
         else if(r == 1)
         {
-            f.setText("Heads");
+            I.setImageResource(R.drawable.patriot_coin);
         }
     }
 }

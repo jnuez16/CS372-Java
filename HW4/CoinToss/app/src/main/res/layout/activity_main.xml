@@ -5,6 +5,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/coin_image"
+        android:src="@drawable/seahawks_coin"
+        android:layout_above="@+id/Flip"
+        android:layout_marginBottom="100dp"
+        android:layout_centerHorizontal="true"
+        />
     <Button
         android:layout_width="200dp"
         android:layout_height="100dp"
@@ -16,14 +25,5 @@
         android:layout_centerHorizontal="true"
         android:onClick="FlipClick" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Heads"
-        android:textSize="50dp"
-        android:id="@+id/Coin"
-        android:layout_above="@+id/Flip"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp" />
+
 </RelativeLayout>
