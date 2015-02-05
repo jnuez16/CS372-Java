@@ -1,5 +1,5 @@
 username: john; 
-money: 500;
+money: 623;
 username: joshua; 
 money: -75;
 username: jason; 
@@ -7,4 +7,8 @@ money: 500;
 username: james; 
 money: 545;
 username: nico; 
+money: 500;
+username: pete; 
+money: 377;
+username: jow; 
 money: 500;
