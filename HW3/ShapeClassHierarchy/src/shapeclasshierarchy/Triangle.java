@@ -17,6 +17,7 @@ public class Triangle extends Shape {
     private int s2;
     private int s3;
 
+    //javadoc? -3
     public Triangle(int s1, int s2, int s3) {
 
         if (s1 + s2 <= s3 || s1 + s3 <= s2 || s2 + s3 <= s1 || s1 < 0 || s2 < 0 || s3 < 0) {

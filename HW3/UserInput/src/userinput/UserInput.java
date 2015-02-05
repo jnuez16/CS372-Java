@@ -5,6 +5,7 @@
  */
 package userinput;
 
+//PT -- nice
 import HomeworkTracker.Stats;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -24,6 +25,7 @@ public class UserInput {
         Scanner input = new Scanner(System.in);
         boolean tryagain;
 
+        //PT -- this could be separated out ...
         for (int i = 0; i < 10; i++) {
             do {
                 System.out.printf("Integer %d: ", i + 1);
