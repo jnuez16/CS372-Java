@@ -36,7 +36,7 @@ public class RestaurantIO {
         try {
             BufferedReader rdr = new BufferedReader(new FileReader(f));
             String line;
-            while ((line = rdr.readLine()) != null) {
+            while ((line = rdr.readLine()) != null) { //PT -- regex! nice!
                 Pattern p = Pattern.compile("<name>Name: (.*)</name>");
                 Matcher m = p.matcher(line);
                 while (m.find()) {
