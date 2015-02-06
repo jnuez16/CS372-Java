@@ -22,7 +22,7 @@ public class Restaurant {
         setNotes(notes);
         setRate(rate);
     }
-    
+    //PT -- javadoc? -4
     public String getName()
     {
         return name;
@@ -59,7 +59,7 @@ public class Restaurant {
     
     public void setRate(int rate)
     {
-        this.rate = rate;
+        this.rate = rate; //PT -- verify that rate is in [1,5]
     }
     
 }
